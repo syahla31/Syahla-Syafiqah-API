@@ -1,6 +1,11 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
+if (!process.env.DATABASE_URL) {
+  console.error('❌ DATABASE_URL is missing! Check Railway Variables.');
+  process.exit(1);
+}
+
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
   dialectOptions: {
@@ -8,7 +13,8 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
       require: true,
       rejectUnauthorized: false
     }
-  }
+  },
+  logging: false
 });
 
 module.exports = sequelize;
