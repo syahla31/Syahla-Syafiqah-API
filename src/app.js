@@ -35,6 +35,11 @@ app.use('/api/balance', balanceRoutes);
 app.use('/api/topup', topupRoutes);
 app.use('/api/transaction', transactionRoutes);
 
+// tambahkan ini 👇
+app.get('/', (req, res) => {
+  res.send('✅ Syahla API is running successfully on Railway!');
+});
+
 // error handler
 app.use((err, req, res, next) => {
   console.error(err);
